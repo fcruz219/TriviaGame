@@ -66,7 +66,7 @@ $("#startBtn").on("click", function(){
 	newGame();
 });
 //START OVER BUTTON ---- Not working??????
-("#startOverBtn").on("click", function(){
+$("#startOverBtn").on("click", function(){
     $(this).hide();
     newGame();
 });
