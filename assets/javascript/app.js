@@ -91,6 +91,7 @@ function nextQuestion() {
     $("#gif").empty();
     answered = true;
 
+// WRITES QUESTIONS TO PAGE 
     $("#currentQuestion").html("Question #" +(currentquestion+1)+"/"+questions.length);
     $(".question").html("<h3>" + questions[currentquestion].question + "</h3>");
     for(var i = 0; i <4; i++){
@@ -100,6 +101,7 @@ function nextQuestion() {
         choices.addClass("thisChoice");
         $(".answerList").append(choices);
     }
+//RUNS COUNTDOWN
     countdown();
     $(".thisChoice").on("click", function(){
         userSelection = $(this).data("index");
@@ -108,6 +110,8 @@ function nextQuestion() {
     });
 }
 
+
+// COUNTDOWN TIMER
 function countdown() {
     seconds = 15;
     $("#timeLeft").html("<h3>Time Remaining: " + seconds + "</h3>");
@@ -116,7 +120,7 @@ function countdown() {
 
     }
 
-
+//TIME GOES DOWN AND UPDATES TIME REMAINING TEXT
 function showcountdown(){
     seconds--;
     $("#timeLeft").html("<h3>Time Remaining: " + seconds + "<h3>");
@@ -127,6 +131,7 @@ function showcountdown(){
     }
 }
 
+//ANSWER PAGE
 function answerpage(){
     $("#currentQuestion").empty();
     $(".thisChoice").empty();
@@ -136,17 +141,21 @@ function answerpage(){
     var rightAnswerindex = questions[currentquestion].answer;
     $("#gif").html('<img src = "assets/images/'+ gifs[currentquestion] + '.gif" width = "400px">');
 
-    //CORRECT OR INCORRECT
+//CORRECT
     if((userSelection == rightAnswerindex) && (answered == true)){
         correct++;
         $("#timeLeft").html("<h3></h3>")
         $("#message").html(messages.correct);
-    } else if((userSelection != rightAnswerindex) && (answered == true)){
+    } 
+// INCORRECT
+    else if((userSelection != rightAnswerindex) && (answered == true)){
         wrong++;
-        $("#timeLeft").html("<h3></h3>")
+        $("#timeLeft").html("<h3></h3>");
         $("#message").html(messages.incorrect);
-        $("#correctAnswer").html("The correct answer was: " + rightAnswertext)
-    } else {
+        $("#correctedAnswer").html("The correct answer was: " + rightAnswertext)
+    } 
+//TIME RAN OUT    
+    else {
         unanswered++
         $("#timeLeft").html("<h3></h3>")
         $("#message").html(messages.endTime);
@@ -154,6 +163,7 @@ function answerpage(){
         answered = true;
     }
 
+//runs next question if there are any left
     if(currentquestion == (questions.length-1)){
         setTimeout(scoreboard, 5000)
     } else{
@@ -162,6 +172,8 @@ function answerpage(){
     }
 }
 
+
+// LAST PAGE SCOREBOARD
 function scoreboard(){
     $("#timeLeft").empty();
     $("#message").empty();
@@ -171,7 +183,7 @@ function scoreboard(){
     $("#finalMessage").html(messages.finished);
     $("#correctAnswers").html("Correct Answers: " + correct);
     $("#incorrectAnswers").html("Incorrect Answers: " + wrong);
-    $("unanswered").html("Unanswered: " + unanswered);
+    $("#unanswered").html("Unanswered: " + unanswered);
     $("#startOverBtn").addClass("reset");
     $("#startOverBtn").show();
     $("#startOverBtn").html("Start Over?");
