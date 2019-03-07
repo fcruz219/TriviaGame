@@ -1,0 +1,28 @@
+body {
+    background-image: url("../images/wallpaper.jpg");
+    }
+
+#startBtn {
+    max-width: 800px;
+    font-size: 40px;
+    padding: 10px;
+    padding-right:100px;
+    padding-left:100px;
+    color: white;
+    background: grey;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.container {
+    background:white;
+    opacity: 0.7;
+    text-align: center;
+    height: 600px;
+    margin-top:30px;
+}
+
+h1{
+    text-align: center;
+}
+
