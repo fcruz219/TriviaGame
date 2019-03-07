@@ -16,7 +16,6 @@ body {
 
 .container {
     background:white;
-    opacity: 0.7;
     text-align: center;
     height: 600px;
     margin-top:30px;
@@ -25,4 +24,33 @@ body {
 h1{
     text-align: center;
 }
+
+#startBtn {
+    margin-top:200px;
+}
+
+.thisChoice:hover{
+	background-color: black;
+	color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* 
+.answerList {
+    padding:20px;
+} */
+
+#startOverBtn:hover {
+    max-width: 100%;
+    font-size: 40px;
+    padding: 10px;
+    padding-right:100px;
+    padding-left:100px;
+    color: white;
+    background: grey;
+    border: 2px solid black;
+    text-align: center;
+}
+
 

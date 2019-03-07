@@ -54,25 +54,25 @@ var answered;
 var userSelection
 var messages = {
     correct: "Yes! That's right!",
-    incorrect: "Nope! Sorry, that's not right.",
+    incorrect: "That's not right! You know nothin' Jon Snow",
     endTime: "Sorry, Out of time!",
     finished: "Alright, let's see how you managed."
 }
+
 
 // START BUTON
 $("#startBtn").on("click", function(){
 	$(this).hide();
 	newGame();
 });
-//START OVER BUTTON
-$("startOverBtn").on("click", function() {
+//START OVER BUTTON ---- Not working??????
+("#startOverBtn").on("click", function(){
     $(this).hide();
     newGame();
-}
-)
+});
 
 //FUNCTION FOR WHEN A NEW GAME STARTS
-function newGame() {
+function newGame(){
     $("#correctAnswer").empty();
     $("#wrongAnswer").empty();
     $("#unanswered").empty();
@@ -83,6 +83,8 @@ function newGame() {
     nextQuestion();
 }
 
+
+// STARTS RUNNING THE QUESTIONS
 function nextQuestion() {
     $("#message").empty();
     $("#correctedAnswer").empty();
@@ -90,7 +92,7 @@ function nextQuestion() {
     answered = true;
 
     $("#currentQuestion").html("Question #" +(currentquestion+1)+"/"+questions.length);
-    $(".questions").html("<h2>" + questions[currentquestion].question + "</h2>");
+    $(".question").html("<h3>" + questions[currentquestion].question + "</h3>");
     for(var i = 0; i <4; i++){
         var choices = $("<div>");
         choices.text(questions[currentquestion].answerList[i]);
@@ -100,7 +102,7 @@ function nextQuestion() {
     }
     countdown();
     $(".thisChoice").on("click", function(){
-        userSelect = $(this).data("index");
+        userSelection = $(this).data("index");
         clearInterval(time)
         answerpage();
     });
@@ -137,13 +139,16 @@ function answerpage(){
     //CORRECT OR INCORRECT
     if((userSelection == rightAnswerindex) && (answered == true)){
         correct++;
+        $("#timeLeft").html("<h3></h3>")
         $("#message").html(messages.correct);
     } else if((userSelection != rightAnswerindex) && (answered == true)){
         wrong++;
+        $("#timeLeft").html("<h3></h3>")
         $("#message").html(messages.incorrect);
         $("#correctAnswer").html("The correct answer was: " + rightAnswertext)
     } else {
         unanswered++
+        $("#timeLeft").html("<h3></h3>")
         $("#message").html(messages.endTime);
         $("#correctedAnswer").html("The correct answer was: " + rightAnswertext)
         answered = true;
